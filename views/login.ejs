@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<%- include('flashMessages') %>
+    <h1>Admin Login</h1>
+    <form action="/login" method="POST">
+    	<label for="username">Username</label>
+    	<input type="text" name="username" id="username">
+
+    	<label for="password">Password</label>
+    	<input type="password" name="password" id="password">
+
+    	<input type="submit">
+    </form>
+  </body>
+</html>

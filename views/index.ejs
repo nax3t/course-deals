@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+		<style>
+			.course-wrapper {
+				float: left;
+				border: 1px solid black;
+				padding: 10px;
+				margin: 10px;
+				width: 250px;
+			}
+		</style>
+  </head>
+  <body>
+		<div>
+		  *All courses are linked via an affiliate url, that means that Udemy compensates me for any sales made with those links
+		  **Udemy offers a 30 day money-back guarantee for all their courses
+		</div>
+  	<%- include('flashMessages') %>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <% courses.forEach(course => { %>
+    <div class="course-wrapper">
+			<a href="<%= course.affiliateUrl %>">
+				<h3><%= course.title %></h3>
+				<div>
+					<img src="<%= course.thumbnailUrl %>" alt="<%= course.title %>"><br>
+				</div>
+			</a>
+			<div>
+				<h3><%= course.listPrice %></h3>
+				<h5><%= course.percentOff %> of <%= course.ogPrice %></h5>
+			</div>
+		</div>
+	  <% }); %>
+		
+  </body>
+</html>
