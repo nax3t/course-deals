@@ -20,7 +20,7 @@ router.get('/courses', async function(req, res, next) {
 		const courses = await Course.find();
 	  res.render('index', { title: 'Course Deals', courses });
 	} catch(err) {
-		throw new Error(err);
+		res.status(500).send('Oops, something broke!');
 	}
 });
 

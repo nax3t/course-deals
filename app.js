@@ -10,6 +10,18 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+// connect to mongodb
+const dbUri = process.env.DBURI || 'mongodb://localhost:27017/course-deals';
+mongoose.connect(dbUri, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useCreateIndex: true,
+	useFindAndModify: false
+}).then(success => {
+	console.log('Connected to DB!');
+}).catch(err => {
+	console.log('DATABASE CONNECTION ERROR!', err.message);
+});
 // configure sessions/session store
 const MongoStore = require('connect-mongo')(session);
 const options = {
@@ -26,18 +38,7 @@ app.use(session({
 // Configure passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-const dbUri = process.env.DBURI || 'mongodb://localhost:27017/course-deals';
 // define user schema and model and configure passport
-mongoose.connect(dbUri, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-	useCreateIndex: true,
-	useFindAndModify: false
-}).then(success => {
-	console.log('Connected to DB!');
-}).catch(err => {
-	console.log('DATABASE CONNECTION ERROR!', err);
-});
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
 const UserSchema = new Schema({admin:Boolean});
