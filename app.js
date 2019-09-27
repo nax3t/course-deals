@@ -11,22 +11,16 @@ const indexRouter = require('./routes/index');
 const app = express();
 
 // configure sessions/session store
-const MongoDBStore = require('connect-mongo')(session);
-const store = new MongoDBStore({
-  mongooseConnection: mongoose.connection,
-  touchAfter: 24 * 3600,
-  secret: process.env.COOKIE_SECRET
-});
-// Catch errors
-store.on('error', function(error) {
-  console.log('STORE ERROR!!!', error);
-});
+const MongoStore = require('connect-mongo')(session);
+const options = {
+	mongooseConnection: mongoose.connection,
+	secret: process.env.COOKIE_SECRET || 'foo'
+};
 app.use(session({
-  secret: process.env.COOKIE_SECRET,
-  cookie: { httpOnly: true, expires: Date.now() + 1000 * 60 * 60, maxAge: 1000 * 60 * 60},
-  store,
-  resave: true,
-  saveUninitialized: false
+  secret: process.env.COOKIE_SECRET || 'foo',
+  store: new MongoStore(options),
+  saveUninitialized: false, // don't create session until something stored
+  resave: false, //don't save session if unmodified
 }));
 
 // Configure passport middleware
@@ -42,7 +36,7 @@ mongoose.connect(dbUri, {
 }).then(success => {
 	console.log('Connected to DB!');
 }).catch(err => {
-	console.log(err.message);
+	console.log('DATABASE CONNECTION ERROR!', err);
 });
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
