@@ -1,7 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -11,12 +10,25 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+// configure sessions/session store
+const MongoDBStore = require('connect-mongo')(session);
+const store = new MongoDBStore({
+  mongooseConnection: mongoose.connection,
+  touchAfter: 24 * 3600,
+  secret: process.env.COOKIE_SECRET
+});
+// Catch errors
+store.on('error', function(error) {
+  console.log('STORE ERROR!!!', error);
+});
 app.use(session({
-  secret: 'keyboard kitty',
-  resave: false,
-  saveUninitialized: true,
-  // cookie: { secure: true }
-}))
+  secret: process.env.COOKIE_SECRET,
+  cookie: { httpOnly: true, expires: Date.now() + 1000 * 60 * 60, maxAge: 1000 * 60 * 60},
+  store,
+  resave: true,
+  saveUninitialized: false
+}));
+
 // Configure passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -65,7 +77,6 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // flash messages
