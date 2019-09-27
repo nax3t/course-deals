@@ -35,21 +35,25 @@ router.post('/courses', isAdminLoggedIn, async function(req, res, next) {
 	let { affiliateUrl } = req.body;
 	try {
 			// puppeteer usage as normal
-			await puppeteer.launch({ headless: true }).then(async browser => {
-			  const page = await browser.newPage()
-			  await page.setViewport({ width: 800, height: 600 })
-			  await page.goto(affiliateUrl)
-			  await page.waitForSelector('.course-price-text > span + span > span');
-			  const title = await page.$eval('h1[data-purpose=lead-title]', e => e.innerText);
-			  // await page.screenshot({ path: title, fullPage: true })
-			  const thumbnailUrl = await page.$eval('div[data-purpose=introduction-asset] img', e => e.src);
-			  const listPrice = await page.$eval('.course-price-text > span + span > span', e => e.innerText);
-			  const ogPrice = await page.$eval('div[data-purpose=course-old-price-text] > span + span > s > span', e => e.innerText);
-			  const percentOff = await page.$eval('div[data-purpose=discount-percentage] > span + span', e => e.innerText);
-			  const rating = await page.$eval('div[data-purpose=ratings] div.rate-count > span > span', e => e.innerText);
-			  await browser.close()
-			  courseInfo = {title, listPrice, percentOff, ogPrice, thumbnailUrl, rating};
-			});
+			const browser = await puppeteer.launch({ 
+				headless: true,
+				'args' : [
+		    '--no-sandbox',
+		    '--disable-setuid-sandbox'
+		  ]});
+		  const page = await browser.newPage()
+		  await page.setViewport({ width: 800, height: 600 })
+		  await page.goto(affiliateUrl)
+		  await page.waitForSelector('.course-price-text > span + span > span');
+		  const title = await page.$eval('h1[data-purpose=lead-title]', e => e.innerText);
+		  // await page.screenshot({ path: title, fullPage: true })
+		  const thumbnailUrl = await page.$eval('div[data-purpose=introduction-asset] img', e => e.src);
+		  const listPrice = await page.$eval('.course-price-text > span + span > span', e => e.innerText);
+		  const ogPrice = await page.$eval('div[data-purpose=course-old-price-text] > span + span > s > span', e => e.innerText);
+		  const percentOff = await page.$eval('div[data-purpose=discount-percentage] > span + span', e => e.innerText);
+		  const rating = await page.$eval('div[data-purpose=ratings] div.rate-count > span > span', e => e.innerText);
+		  await browser.close()
+		  courseInfo = {title, listPrice, percentOff, ogPrice, thumbnailUrl, rating};
 			courseInfo.affiliateUrl = req.body.affiliateUrl;
 		  await Course.create(courseInfo);
 		  req.session.success = 'Course created successfully!';
