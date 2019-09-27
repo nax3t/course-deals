@@ -48,22 +48,22 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-async function createOneUser() {
-	let admin = await User.findOne({'username': 'admin'});
-	if (!admin) {
-		try {
-			const user = new User({username: 'admin', admin: true});
-			await user.setPassword(process.env.ADMINPW);
-			await user.save();
-			console.log('Admin user created!');
-		} catch(err) {
-			console.log(err.message);
-		};
-	} else {
-		console.log('Admin user already exists!');
-	}
-}
-createOneUser();
+// async function createOneUser() {
+// 	let admin = await User.findOne({'username': 'admin'});
+// 	if (!admin) {
+// 		try {
+// 			const user = new User({username: 'admin', admin: true});
+// 			await user.setPassword(process.env.ADMINPW);
+// 			await user.save();
+// 			console.log('Admin user created!');
+// 		} catch(err) {
+// 			console.log(err.message);
+// 		};
+// 	} else {
+// 		console.log('Admin user already exists!');
+// 	}
+// }
+// createOneUser();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
