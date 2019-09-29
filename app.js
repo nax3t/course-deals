@@ -18,7 +18,7 @@ mongoose.connect(dbUri, {
 	useCreateIndex: true,
 	useFindAndModify: false
 }).then(success => {
-	console.log('Connected to DB!');
+	console.log('Connected to database!');
 }).catch(err => {
 	console.log('DATABASE CONNECTION ERROR!', err.message);
 });
