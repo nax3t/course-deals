@@ -1,0 +1,215 @@
+// main: style.scss
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+#footer {
+  padding: 0 0 30px 0;
+  font-size: 14px;
+  background: #fff;
+
+  .footer-top {
+    padding: 60px 0 30px 0;
+    background: #f5f8fd;
+
+    .footer-info {
+      margin-bottom: 30px;
+      h3 {
+        font-size: 34px;
+        margin: 0 0 20px 0;
+        padding: 2px 0 2px 0;
+        line-height: 1;
+        font-family: $primary-font;
+        color: $secondary;
+        font-weight: 400;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+
+      p {
+        font-size: 13px;
+        line-height: 24px;
+        margin-bottom: 0;
+        font-family: $primary-font;
+        color: $secondary-light;
+      }
+    }
+
+    .social-links {
+      a {
+        font-size: 18px;
+        display: inline-block;
+        background: $primary;
+        color: $white;
+        line-height: 1;
+        padding: 8px 0;
+        margin-right: 4px;
+        border-radius: 50%;
+        text-align: center;
+        width: 36px;
+        height: 36px;
+        transition: 0.3s;
+        &:hover {
+          background: $primary-dark;
+          color: #fff;
+        }
+
+        @media (max-width: 574px) {
+          margin-bottom: 25px;
+        }
+      }
+    }
+
+    h4 {
+      font-size: 14px;
+      font-weight: bold;
+      color: $secondary;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-links {
+      margin-bottom: 30px;
+      ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding: 8px 0;
+          &:first-child {
+            padding-top: 0;
+          }
+        }
+
+        a {
+          color: lighten($secondary-light, 10%);
+          &:hover {
+            color: $primary;
+          }
+        }
+      }
+    }
+
+    .footer-contact {
+      margin-bottom: 30px;
+      p {
+        line-height: 26px;
+      }
+    }
+
+    .footer-newsletter {
+      margin-bottom: 30px;
+
+      input[type="email"] {
+        border: 0;
+        padding: 6px 8px;
+        width: 65%;
+        border: 1px solid #d9dde6;
+      }
+      input[type="submit"] {
+        background: $primary;
+        border: 1px solid $primary;
+        width: 35%;
+        padding: 6px 0;
+        text-align: center;
+        color: #fff;
+        transition: 0.3s;
+        cursor: pointer;
+        &:hover {
+          background: $primary-dark;
+        }
+      }
+    }
+
+    .form {
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      #sendmessage {
+        color: #fff;
+        background: $primary;
+        display:none;
+        text-align:center;
+        padding:15px;
+        font-weight:600;
+        margin-bottom:15px;
+      }
+  
+      #errormessage {
+        color:#fff;
+        display:none;
+        background: red;
+        text-align:center;
+        padding:15px;
+        font-weight:600;
+        margin-bottom:15px;
+      }
+  
+      #sendmessage.show, #errormessage.show, .show {
+        display:block;
+      }
+  
+      .validation {
+        color: red;
+        display:none;
+        margin: 0 0 20px;
+        font-weight:400;
+        font-size:13px;
+      }
+      
+      label {
+        color:$secondary;
+        font-weight: 500;
+      }
+  
+      input, textarea {
+        border-radius: 0;
+        box-shadow: none;
+        border: 1px solid #dce1ec;
+        font-size: 14px;
+      }
+
+      input::placeholder, textarea::placeholder {
+        color: lighten($secondary-light, 30%);
+      }
+  
+      button[type="submit"] {
+        background: $primary;
+        border: 0;
+        border-radius: 3px;
+        padding: 8px 30px;
+        color: #fff;
+        transition: 0.3s;
+        &:hover {
+          background: $primary-dark;
+          cursor: pointer;
+        }
+      }
+    }
+
+  }
+
+  .copyright {
+    text-align: center;
+    padding-top: 30px;
+    color: $secondary-light;
+    font-size: 15px;
+  }
+
+  .credits {
+    text-align: center;
+    font-size: 14px;
+    padding-top: 4px;
+    color: lighten($secondary-light, 20%);
+    a {
+      color: $primary;
+      &:hover {
+        color: $primary-dark;
+      }
+    }
+  }
+}

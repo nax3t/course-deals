@@ -9,7 +9,8 @@ const courseSchema = new Schema({
   listPrice: String,
   percentOff: String,
   ogPrice: String,
-  rating: String
+  rating: String,
+  category: String
 });
 
 module.exports = mongoose.model('Course', courseSchema);

@@ -1,0 +1,94 @@
+// main: style.scss
+
+/*--------------------------------------------------------------
+# Top Bar
+--------------------------------------------------------------*/
+#topbar {
+  padding:  0 0 10px 0;
+  font-size: 14px;
+  transition: all 0.5s;
+
+  @media (max-width: 991px) {
+    display: none;
+  }
+
+  .social-links {
+    text-align: right;
+    a {
+      color: $secondary-light;
+      padding: 4px 12px;
+      display: inline-block;
+      line-height: 1px;
+      &:hover {
+        color: $primary;
+      }
+      &:first-child {
+        border-left: 0;
+      }
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+  height: 110px;
+  transition: all 0.5s;
+  z-index: 997;
+  transition: all 0.5s;
+  padding: 20px 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  transition: all 0.5s;
+  z-index: 997;
+  
+  &.header-scrolled, &.header-pages  {
+    height: 70px;
+    padding: 15px 0;
+    background-color: #fff;
+    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
+    #topbar {
+      display: none;
+    }
+  }
+
+  @media (max-width: 991px) {
+    height: 70px;
+    padding: 15px 0;
+  }
+
+  .logo {
+
+    h1 {
+      font-size: 36px;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      @media (max-width: 991px) {
+        font-size: 28px;
+        padding: 8px 0;
+      }
+    }
+
+    h1 a, h1 a:hover {
+      color: $secondary;
+      text-decoration: none;
+    }
+
+    img {
+      padding: 0;
+      margin: 7px 0;
+      max-height: 26px;
+    }
+  }
+}
+
+.main-pages {
+  margin-top: 60px;
+}
