@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 router.get('/courses', async function(req, res, next) {
 	try {
 		const courses = await Course.find();
-	  res.render('index', { title: 'Course Deals', courses });
+	  res.render('index', { title: 'DevSprout | Udemy Course Deals', courses });
 	} catch(err) {
 		res.status(500).send('Oops, something broke!');
 	}
