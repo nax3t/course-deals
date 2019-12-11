@@ -4,6 +4,6 @@ module.exports = [
 	{name: 'mobile', formal: 'Mobile Development'},
 	{name: 'frontend', formal: 'Front-end Frameworks'},
 	{name: 'gaming', formal: 'Gaming Development'},
-	{name: 'design', formal: 'Design'}
+	{name: 'design', formal: 'Design'},
 	{name: 'dbs', formal: 'Databases'}
 ];
