@@ -25,7 +25,7 @@
         <select name="categories" id="" multiple>
           <% categories.forEach(cat => { %>
           <option value="<%= cat.name %>"><%= cat.formal %></option>
-          <% } %>
+          <% }); %>
         </select>
         <div>
   				<small><%= course.categories %></small>
