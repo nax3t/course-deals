@@ -6,11 +6,13 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const methodOverride = require('method-override');
+const categories = require('./categories');
 
 const indexRouter = require('./routes/index');
 
 const app = express();
 
+app.locals.categories = categories;
 // connect to mongodb
 const dbUri = process.env.DBURI || 'mongodb://localhost:27017/course-deals';
 mongoose.connect(dbUri, {
