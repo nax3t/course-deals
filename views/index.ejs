@@ -381,7 +381,7 @@
 					<% var count = 0; %>
           <% courses.forEach(course => { %>
           <% count = count === 3 ? 0 : count; %>
-      		<div class="col-lg-4 col-md-6 portfolio-item filter-<%= course.categories ? course.categories.split(', ')[0] : 'null' %>" data-wow-delay="0.<%= count %>s">
+      		<div class="col-lg-4 col-md-6 portfolio-item <%= course.categories ? course.categories.split(' ').map(el=>'filter-'+el).join(' ') : 'null' %>" data-wow-delay="0.<%= count %>s">
             <div class="d-block d-sm-none">
               <h4><a href="<%= course.affiliateUrl %>"><%= course.title %></a></h4>
             </div>
