@@ -64,8 +64,41 @@ router.post('/courses', isAdminLoggedIn, async function(req, res, next) {
 	}
 });
 
+router.get('/courses/:id/edit', isAdminLoggedIn, function(req, res, next) {
+	Course.findById(req.params.id)
+		.then(course => {
+		  res.render('edit', { title: 'Edit Course', course });
+		})
+		.catch(err => {
+			throw new Error(err);
+		});
+});
+
+router.put('/courses/:id', isAdminLoggedIn, function(req, res, next) {
+	let { categories } = req.body;
+	if (Array.isArray(categories)) { 
+		categories = categories.join(' ');
+		req.body.categories = categories;
+	}
+	Course.findByIdAndUpdate(req.params.id, req.body, {new:true})
+		.then(course => {
+			console.log('Course:', course);
+		  res.redirect('/courses');
+		})
+		.catch(err => {
+			throw new Error(err);
+		});
+});
+
+
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Admin Login' });
+});
+
+
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/courses');
 });
 
 router.get('/courses/update', isAdminLoggedIn, async function(req, res, next) {
@@ -104,7 +137,7 @@ router.get('/courses/update', isAdminLoggedIn, async function(req, res, next) {
 
 router.post('/login', passport.authenticate('local'), function(req, res, next) {
 	req.session.success = 'Welcome! ' + req.user.username;
-  res.redirect('/courses/new');
+  res.redirect('/courses');
 });
 
 function isAdminLoggedIn(req, res, next) {

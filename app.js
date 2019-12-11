@@ -5,6 +5,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
+const methodOverride = require('method-override');
 
 const indexRouter = require('./routes/index');
 
@@ -78,12 +79,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // flash messages
 app.use(function(req, res, next) {
+	res.locals.currentUser = req.user;
 	res.locals.error = req.session.error || '';
 	res.locals.success = req.session.success || '';
 	req.session.error ? delete req.session.error : null;
 	req.session.success ? delete req.session.success : null;
 	next();
 });
+
+app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
 

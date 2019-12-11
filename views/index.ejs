@@ -99,7 +99,7 @@
         <div class="col-md-6 intro-info order-md-last order-first">
           <h2>Top Rated<br><span>Udemy</span> Course Suggestions</h2>
           <div>
-            <a href="#portfolio" class="btn-get-started scrollto">Get Started</a>
+            <a href="<%= currentUser && currentUser.admin ? '/courses/new' : '#portfolio' %>" class="btn-get-started scrollto">Get Started</a>
           </div>
         </div>
   
@@ -365,30 +365,39 @@
           <p><small>(Udemy compensates me for any purchases made from the links below)</small></p>
         </header>
 
-<!--         <div class="row">
+        <div class="row">
           <div class="col-lg-12">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
+              <li data-filter=".filter-web">Web Development</li>
+              <li data-filter=".filter-cs">Computer Science</li>
+              <li data-filter=".filter-frontend">Front-end Frameworks</li>
+              <li data-filter=".filter-mobile">Mobile Development</li>
+              <li data-filter=".filter-gaming">Gaming Development</li>
             </ul>
           </div>
-        </div> -->
+        </div>
 
         <div class="row portfolio-container">
 
 					<% var count = 0; %>
           <% courses.forEach(course => { %>
           <% count = count === 3 ? 0 : count; %>
-      		<div class="col-lg-4 col-md-6 portfolio-item filter-app" data-wow-delay="0.<%= count %>s">
+      		<div class="col-lg-4 col-md-6 portfolio-item filter-<%= course.categories ? course.categories.split(', ')[0] : 'null' %>" data-wow-delay="0.<%= count %>s">
       		  <div class="portfolio-wrap">
       		    <img src="<%= course.thumbnailUrl.replace('240x135', '480x270'); %>" class="img-fluid" alt="<%= course.title %>">
       		    <div class="portfolio-info">
       		      <h4><a href="<%= course.affiliateUrl %>"><%= course.title %></a></h4>
       		      <p><%= course.percentOff %></p>
       		      <div>
-      		        <a href="<%= course.affiliateUrl %>" class="link-details" title="View Course"><i class="ion ion-android-open"></i></a>
+      		        <a href="<%= course.affiliateUrl %>" class="link-details" title="View Course">
+                    <i class="ion ion-android-open"></i>
+                  </a>
+                  <% if (currentUser && currentUser.admin) { %>
+                  <a href="/courses/<%= course.id %>/edit" class="link-details" title="Edit Course">
+                    <i class="ion ion-android-create"></i>
+                  </a>
+                  <% } %>
       		      </div>
       		    </div>
       		  </div>
