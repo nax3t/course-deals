@@ -23,11 +23,9 @@
 			<div>
 				<label for="categories">Categories</label>
         <select name="categories" id="" multiple>
-          <option value="web">Web Development</option>
-          <option value="cs">Computer Science</option>
-          <option value="mobile">Mobile Development</option>
-          <option value="frontend">Front-end Frameworks</option>
-          <option value="gaming">Gaming Development</option>
+          <% categories.forEach(cat => { %>
+          <option value="<%= cat.name %>"><%= cat.formal %></option>
+          <% } %>
         </select>
         <div>
   				<small><%= course.categories %></small>
