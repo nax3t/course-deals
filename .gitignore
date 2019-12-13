@@ -1,3 +1,5 @@
 node_modules
 getCourseInfo.js
 .env
+createAdmin.js
+updateCourses.js

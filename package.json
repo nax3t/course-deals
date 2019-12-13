@@ -9,6 +9,7 @@
     "connect-mongo": "^3.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
     "ejs": "^2.6.2",
     "express": "~4.16.1",
     "express-session": "^1.16.2",

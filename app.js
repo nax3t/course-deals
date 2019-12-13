@@ -1,3 +1,5 @@
+// require('dotenv').config()
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -7,7 +9,7 @@ const passport = require('passport');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const categories = require('./categories');
-
+const updateCourses = require('./updateCourses');
 const indexRouter = require('./routes/index');
 
 const app = express();
@@ -22,6 +24,7 @@ mongoose.connect(dbUri, {
 	useFindAndModify: false
 }).then(success => {
 	console.log('Connected to database!');
+	// updateCourses();
 }).catch(err => {
 	console.log('DATABASE CONNECTION ERROR!', err.message);
 });
