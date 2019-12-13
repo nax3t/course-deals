@@ -391,7 +391,9 @@
       		    <img src="<%= course.thumbnailUrl.replace('240x135', '480x270'); %>" class="img-fluid" alt="<%= course.title %>">
       		    <div class="portfolio-info">
       		      <h4><a href="<%= course.affiliateUrl %>"><%= course.title %></a></h4>
-      		      <p><%= course.percentOff %></p>
+      		      <h5 class="text-white">
+                  <%= course.rating %> rating
+                </h5>
       		      <div>
       		        <a href="<%= course.affiliateUrl %>" class="link-details" title="View Course">
                     <i class="ion ion-android-open"></i>
