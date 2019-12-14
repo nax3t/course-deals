@@ -51,7 +51,7 @@ router.post('/courses', isAdminLoggedIn, async function(req, res, next) {
 		  const listPrice = await page.$eval('.course-price-text > span + span > span', e => e.innerText);
 		  const ogPrice = await page.$eval('div[data-purpose=course-old-price-text] > span + span > s > span', e => e.innerText);
 		  const percentOff = await page.$eval('div[data-purpose=discount-percentage] > span + span', e => e.innerText);
-		  const rating = await page.$eval('div[data-purpose=ratings] div.rate-count > span > span', e => e.innerText);
+		  const rating = await page.$eval('.rate-count > span > span:first-of-type', e => e.textContent);
 		  await browser.close()
 		  courseInfo = {title, listPrice, percentOff, ogPrice, thumbnailUrl, rating};
 			courseInfo.affiliateUrl = req.body.affiliateUrl;
