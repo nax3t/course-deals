@@ -383,29 +383,31 @@
           <% courses.forEach(course => { %>
           <% count = count === 3 ? 0 : count; %>
       		<div class="col-lg-4 col-md-6 portfolio-item <%= course.categories ? course.categories.split(' ').map(el=>'filter-'+el).join(' ') : 'null' %>" data-wow-delay="0.<%= count %>s">
-            <div class="text-center mb-3" style="height: 48px;">
-              <hr class="d-block d-md-none">
-              <a href="<%= course.affiliateUrl %>"><%= course.title %></a>
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title text-center" style="height:35px;">
+                  <a href="<%= course.affiliateUrl %>"><%= course.title %></a>
+                </div>
+              </div>
+        		  <div class="portfolio-wrap">  
+        		    <img src="<%= course.thumbnailUrl.replace('240x135', '480x270'); %>" class="img-fluid" alt="<%= course.title %>">
+        		    <div class="portfolio-info">
+        		      <h5 class="text-white">
+                    <%= course.rating %> rating
+                  </h5>
+        		      <div>
+        		        <a href="<%= course.affiliateUrl %>" class="link-details" title="View Course">
+                      <i class="ion ion-android-open"></i>
+                    </a>
+                    <% if (currentUser && currentUser.admin) { %>
+                    <a href="/courses/<%= course.id %>/edit" class="link-details" title="Edit Course">
+                      <i class="ion ion-android-create"></i>
+                    </a>
+                    <% } %>
+        		      </div>
+        		    </div>
+        		  </div>
             </div>
-      		  <div class="portfolio-wrap">  
-      		    <img src="<%= course.thumbnailUrl.replace('240x135', '480x270'); %>" class="img-fluid" alt="<%= course.title %>">
-      		    <div class="portfolio-info">
-      		      <h4><a href="<%= course.affiliateUrl %>"><%= course.title %></a></h4>
-      		      <h5 class="text-white">
-                  <%= course.rating %> rating
-                </h5>
-      		      <div>
-      		        <a href="<%= course.affiliateUrl %>" class="link-details" title="View Course">
-                    <i class="ion ion-android-open"></i>
-                  </a>
-                  <% if (currentUser && currentUser.admin) { %>
-                  <a href="/courses/<%= course.id %>/edit" class="link-details" title="Edit Course">
-                    <i class="ion ion-android-create"></i>
-                  </a>
-                  <% } %>
-      		      </div>
-      		    </div>
-      		  </div>
       		</div>
       		<% count++; %>
       	  <% }); %>
