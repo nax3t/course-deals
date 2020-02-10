@@ -153,4 +153,8 @@ function isAdminLoggedIn(req, res, next) {
 	res.redirect('/login');
 }
 
+router.get('/requests/new', function(req, res, next) {
+	res.render('requests/new', { title: 'Suggest a course' });
+});
+
 module.exports = router;
