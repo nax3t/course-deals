@@ -25,6 +25,8 @@
     "puppeteer-extra-plugin-stealth": "^2.2.2"
   },
   "devDependencies": {
-    "locus": "^2.0.1"
+    "locus": "^2.0.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5"
   }
 }

@@ -13,7 +13,8 @@ const courseSchema = new Schema({
   category: String,
   review: String,
   reviewAuthor: String,
-  categories: String
+  categories: String,
+  courseId: String
 });
 
 module.exports = mongoose.model('Course', courseSchema);

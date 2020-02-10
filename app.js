@@ -1,4 +1,6 @@
-// require('dotenv').config()
+if(process.env.NODE_ENV === 'development') {
+	require('dotenv').config();
+}
 
 const createError = require('http-errors');
 const express = require('express');
@@ -9,8 +11,8 @@ const passport = require('passport');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const categories = require('./categories');
-// const updateCourses = require('./updateCourses');
 const indexRouter = require('./routes/index');
+const updateCourses = require('./updateCourses');
 
 const app = express();
 
@@ -125,5 +127,31 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// // NOTES: Need to add courseId to all existing courses!
+// // update course ratings
+// const Course = require('./models/course');
+// const rp =  require('request-promise');
+
+// (async function() {
+// 	try {
+// 		let courses = await Course.find();
+// 		for(const course of courses) {
+// 			if(course.courseId) {
+// 				rp.get(`https://www.udemy.com/api-2.0/courses/${course.courseId}?fields[course]=avg_rating`)
+// 					.then(res => {
+// 						let course = JSON.parse(res);
+// 						console.log(course.avg_rating);
+// 					})
+// 					.catch(err => {
+// 						console.log(err)
+// 					});
+// 			}
+// 		}
+// 	} catch(err) {
+// 		console.log(err);
+// 	}
+// })();
+// //
 
 module.exports = app;
