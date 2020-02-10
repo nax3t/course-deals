@@ -12,7 +12,7 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 const categories = require('./categories');
 const indexRouter = require('./routes/index');
-const updateCourses = require('./updateCourses');
+// const updateCourses = require('./updateCourses');
 
 const app = express();
 
