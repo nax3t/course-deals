@@ -55,8 +55,13 @@ router.post('/courses', isAdminLoggedIn, async function(req, res, next) {
 		  await browser.close()
 		  courseInfo = {title, listPrice, percentOff, ogPrice, thumbnailUrl, rating, courseId};
 			courseInfo.affiliateUrl = req.body.affiliateUrl;
-		  await Course.create(courseInfo);
-		  req.session.success = 'Course created successfully!';
+			let course = await Course.findOne({title});
+			if(!course) {
+			  await Course.create(courseInfo);
+			  req.session.success = 'Course created successfully!';
+			} else {
+			  req.session.error = 'Course already exists!';
+			}
 		  res.redirect('/');
 	} catch(err) {
 	  req.session.error = err.message;
