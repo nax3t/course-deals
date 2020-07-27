@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "NODE_ENV=development nodemon"
+    "dev": "env:NODE_ENV=development nodemon"
   },
   "dependencies": {
     "connect-mongo": "^3.0.0",

@@ -68,7 +68,9 @@ function requireHTTPS(req, res, next) {
   next();
 }
 
-app.use(requireHTTPS);
+if (process.env.NODE_ENV === 'development') {
+	app.use(requireHTTPS);
+}
 
 // async function createOneUser() {
 // 	let admin = await User.findOne({'username': 'admin'});
