@@ -1,6 +1,6 @@
-if(process.env.NODE_ENV === 'development') {
+// if(process.env.NODE_ENV === 'development') {
 	require('dotenv').config();
-}
+// }
 
 const createError = require('http-errors');
 const express = require('express');
@@ -141,9 +141,10 @@ app.use(function(err, req, res, next) {
 // 		for(const course of courses) {
 // 			if(course.courseId) {
 // 				rp.get(`https://www.udemy.com/api-2.0/courses/${course.courseId}?fields[course]=avg_rating`)
-// 					.then(res => {
-// 						let course = JSON.parse(res);
-// 						console.log(course.avg_rating);
+// 					.then(async res => {
+// 						let resCourse = JSON.parse(res);
+// 						course.rating = resCourse.avg_rating.toFixed(1);
+// 						await course.save();
 // 					})
 // 					.catch(err => {
 // 						console.log(err)
@@ -154,6 +155,6 @@ app.use(function(err, req, res, next) {
 // 		console.log(err);
 // 	}
 // })();
-// //
+
 
 module.exports = app;

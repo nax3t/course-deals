@@ -13,7 +13,7 @@ puppeteer.use(pluginStealth());
 
 router.get('/', async function(req, res, next) {
 	try {
-		const courses = await Course.find().sort('-_id');
+	  const courses = await Course.find().sort('-_id');
 	  res.render('index', { title: 'Top Rated Technology Courses on Udemy', courses });
 	} catch(err) {
 		res.status(500).send('Oops, something broke!');
