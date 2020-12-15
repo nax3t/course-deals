@@ -7,8 +7,8 @@
     "dev": "env:NODE_ENV=development nodemon"
   },
   "dependencies": {
-    "connect-mongo": "^3.0.0",
-    "cookie-parser": "~1.4.4",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.5",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
@@ -26,8 +26,8 @@
     "puppeteer-extra-plugin-stealth": "^2.2.2"
   },
   "devDependencies": {
-    "locus": "^2.0.1",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.5"
+    "locus": "^2.0.4",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
   }
 }
