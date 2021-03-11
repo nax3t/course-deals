@@ -43,7 +43,7 @@ router.post('/courses', isAdminLoggedIn, async function(req, res, next) {
 		  const page = await browser.newPage()
 		  await page.setViewport({ width: 800, height: 600 })
 		  await page.goto(affiliateUrl)
-		  await page.waitForSelector('.course-price-text > span + span > span');
+		  await page.waitForSelector('h1[data-purpose=lead-title]');
 		  const title = await page.$eval('h1[data-purpose=lead-title]', e => e.innerText);
 		  // await page.screenshot({ path: title, fullPage: true })
 		  const thumbnailUrl = await page.$eval('div[data-purpose=introduction-asset] img', e => e.src);
