@@ -47,13 +47,13 @@ router.post('/courses', isAdminLoggedIn, async function(req, res, next) {
 		  const title = await page.$eval('h1[data-purpose=lead-title]', e => e.innerText);
 		  // await page.screenshot({ path: title, fullPage: true })
 		  const thumbnailUrl = await page.$eval('div[data-purpose=introduction-asset] img', e => e.src);
-		  const listPrice = await page.$eval('.course-price-text > span + span > span', e => e.innerText);
-		  const ogPrice = await page.$eval('div[data-purpose=course-old-price-text] > span + span > s > span', e => e.innerText);
-		  const percentOff = await page.$eval('div[data-purpose=discount-percentage] > span + span', e => e.innerText);
-		  const rating = await page.$eval('.rate-count > span > span:first-of-type', e => e.textContent);
+		//   const listPrice = await page.$eval('.course-price-text > span + span > span', e => e.innerText);
+		//   const ogPrice = await page.$eval('div[data-purpose=course-old-price-text] > span + span > s > span', e => e.innerText);
+		//   const percentOff = await page.$eval('div[data-purpose=discount-percentage] > span + span', e => e.innerText);
+		  const rating = await page.$eval('.udlite-heading-sm.star-rating--rating-number--3lVe8', e => e.textContent);
 		  const courseId = await page.$eval('body', e => e.dataset.clpCourseId);
 		  await browser.close()
-		  courseInfo = {title, listPrice, percentOff, ogPrice, thumbnailUrl, rating, courseId};
+		  courseInfo = {title, thumbnailUrl, rating, courseId};
 			courseInfo.affiliateUrl = req.body.affiliateUrl;
 			let course = await Course.findOne({title});
 			if(!course) {
